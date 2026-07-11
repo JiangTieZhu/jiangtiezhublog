@@ -4,8 +4,6 @@ date: 2026-07-04
 draft: false
 
 image: hermacbook.jpg
-categories:
-  - 生活
 
 tags:
   - 生活日常

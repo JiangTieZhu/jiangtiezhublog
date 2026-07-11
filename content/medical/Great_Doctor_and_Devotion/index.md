@@ -3,11 +3,6 @@ title: "孙思邈的《大医精诚》"
 date: 2026-07-06
 draft: false
 
-categories:
-  - 医学
-  - 中医学
-  - 传统医学
-
 tags:
   - 医学
   - 中医学

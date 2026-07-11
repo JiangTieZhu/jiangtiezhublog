@@ -3,9 +3,6 @@ title: "几段单相思历程(中)之一首诗篇"
 date: 2026-07-02
 draft: false
 
-categories:
-  - 生活
-
 tags:
   - 生活日常
   - 暗恋

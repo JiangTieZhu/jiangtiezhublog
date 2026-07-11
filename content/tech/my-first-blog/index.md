@@ -3,9 +3,6 @@ title: "我的第一篇博客"
 date: 2026-06-29
 draft: false
 
-categories:
-  - 技术
-
 tags:
   - Hugo
   - Stack

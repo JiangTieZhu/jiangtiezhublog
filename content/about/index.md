@@ -3,9 +3,6 @@ title: "关于我"
 date: 2026-07-01
 draft: false
 
-categories:
-  - 关于
-
 tags:
   - 自我介绍
 ---
