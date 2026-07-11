@@ -1,0 +1,36 @@
+[[main]]
+identifier = "medical"
+name = "医学"
+url = "/medical/"
+weight = 1
+
+[[main]]
+identifier = "tech"
+name = "技术"
+url = "/tech/"
+weight = 2
+
+[[main]]
+identifier = "game"
+name = "游戏"
+url = "/game/"
+weight = 3
+
+[[main]]
+identifier = "galgame"
+name = "视觉小说"
+url = "/galgame/"
+pre = "heart"
+weight = 4
+
+[[main]]
+identifier = "life"
+name = "生活"
+url = "/life/"
+weight = 5
+
+[[main]]
+identifier = "about"
+name = "关于"
+url = "/about/"
+weight = 6

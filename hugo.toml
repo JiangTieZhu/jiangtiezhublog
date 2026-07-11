@@ -1,0 +1,16 @@
+baseURL = "https://jiangtiezhu.top/"
+languageCode = "zh-cn"
+title = "铁柱的赛博后花园"
+theme = "stack"
+
+enableRobotsTXT = true
+relativeURLs = false
+canonifyURLs = true
+
+[pagination]
+pagerSize = 5
+
+[sitemap]
+changefreq = "weekly"
+priority = 0.8
+filename = "sitemap.xml"
