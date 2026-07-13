@@ -1,3 +1,47 @@
+# ==========================================
+# 社交链接 (Social Icons)
+# ==========================================
+[[social]]
+name = "Email"
+url = "mailto:geekjkk@gmail.com"
+weight = 1
+params = { icon = "mail" }
+
+# B站
+[[social]]
+name = "Bilibili"
+url = "https://space.bilibili.com/289100442"
+weight = 2
+params = { icon = "bilibili" }
+
+# YouTube
+[[social]]
+name = "YouTube"
+url = "https://www.youtube.com/@JiangTieZhu"
+weight = 3
+params = { icon = "youtube" }
+
+# GitHub
+[[social]]
+name = "GitHub"
+url = "https://github.com/JiangTieZhu"
+weight = 4
+params = { icon = "github" }
+
+# X Platform
+[[social]]
+name = "X"
+url = "https://x.com/JiangTieZhu"
+weight = 6
+params = { icon = "x" }
+
+# Telegram
+[[social]]
+name = "Telegram"
+url = "https://t.me/JiangTieZhu"
+weight = 7
+params = { icon = "telegram" }
+
 [[main]]
 identifier = "medical"
 name = "医学"

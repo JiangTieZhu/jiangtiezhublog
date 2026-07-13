@@ -21,11 +21,6 @@ subtitle = "Medical · Life · Tech · Galgame"
 avatar = "/img/avatar.jpg"
 name = "铁柱的赛博后花园"
 
-[[social]]
-identifier = "email"
-name = "Email"
-url = "mailto:geekjkk@gmail.com"
-
 [article]
 fullContent = true
 headingAnchor = false
