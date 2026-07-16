@@ -71,10 +71,12 @@ weight = 4
 identifier = "life"
 name = "生活"
 url = "/life/"
+pre = "life"
 weight = 5
 
 [[main]]
 identifier = "about"
 name = "关于"
 url = "/about/"
+pre = "about"
 weight = 6
