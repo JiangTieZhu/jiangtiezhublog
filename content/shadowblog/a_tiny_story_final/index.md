@@ -6,7 +6,6 @@ draft: false
 image: hermacbook.jpg
 
 tags:
-  - 生活日常
   - 暗恋
   - 单相思
 ---
