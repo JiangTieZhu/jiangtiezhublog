@@ -8,11 +8,11 @@ weight = 1
 params = { icon = "mail" }
 
 # B站
-[[social]]
-name = "Bilibili"
-url = "https://space.bilibili.com/289100442"
-weight = 2
-params = { icon = "bilibili" }
+#[[social]]
+#name = "Bilibili"
+#url = "https://space.bilibili.com/289100442"
+#weight = 2
+#params = { icon = "bilibili" }
 
 # YouTube
 [[social]]
@@ -22,11 +22,11 @@ weight = 3
 params = { icon = "youtube" }
 
 # GitHub
-[[social]]
-name = "GitHub"
-url = "https://github.com/JiangTieZhu"
-weight = 4
-params = { icon = "github" }
+#[[social]]
+#name = "GitHub"
+#url = "https://github.com/JiangTieZhu"
+#weight = 4
+#params = { icon = "github" }
 
 # X Platform
 [[social]]
