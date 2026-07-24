@@ -68,10 +68,10 @@ pre = "heart"
 weight = 4
 
 [[main]]
-identifier = "life"
-name = "生活"
-url = "/life/"
-pre = "life"
+identifier = "thoughts"
+name = "随想"
+url = "/thoughts/"
+pre = "thoughts"
 weight = 5
 
 [[main]]

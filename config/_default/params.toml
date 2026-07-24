@@ -1,4 +1,4 @@
-mainSections = ["medical", "tech", "galgame", "life", "game"]
+mainSections = ["medical", "tech", "galgame", "thoughts", "game"]
 enableHomePosts = true
 rssFullContent = true
 SortBy = "default"
