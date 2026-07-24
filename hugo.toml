@@ -1,6 +1,6 @@
-baseURL = "https://jiangtiezhu.top/"
+baseURL = "https://cyberbackgarden.top/"
 languageCode = "zh-cn"
-title = "铁柱的赛博后花园"
+title = "赛博后花园"
 theme = "stack"
 hasCJKLanguage = true
 pluralizeListTitles = false
