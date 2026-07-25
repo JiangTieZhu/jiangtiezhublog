@@ -22,3 +22,8 @@ filename = "sitemap.xml"
 [params]
     favicon = "/favicon.ico"
     favicon32x32 = "/favicon-32x32.png"
+
+[markup.goldmark.tableOfContents]
+  endLevel = 4      # 目录收集的最大标题级别（如 h4）
+  ordered = false   # 是否使用有序列表
+  startLevel = 2    # 目录收集的最小标题级别（从 h2 开始）

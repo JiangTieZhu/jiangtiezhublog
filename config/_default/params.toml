@@ -42,9 +42,3 @@ default = "auto"
 
 [params.home]
 fullWidth = true
-
-[markup]
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel = 4
-    ordered = false
