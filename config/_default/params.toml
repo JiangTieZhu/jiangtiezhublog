@@ -42,3 +42,8 @@ default = "auto"
 
 [params.home]
 fullWidth = true
+
+[widgets]
+page = [
+    { type = "toc" }
+]
