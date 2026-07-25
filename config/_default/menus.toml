@@ -46,37 +46,40 @@ params = { icon = "telegram" }
 identifier = "medical"
 name = "医学"
 url = "/medical/"
+params = { icon = "stethoscope" }
 weight = 1
 
 [[main]]
 identifier = "tech"
 name = "技术"
 url = "/tech/"
+params = { icon = "code" }
 weight = 2
 
 [[main]]
 identifier = "game"
 name = "游戏"
 url = "/game/"
+params = { icon = "device-gamepad-2" }
 weight = 3
 
 [[main]]
 identifier = "galgame"
 name = "视觉小说"
 url = "/galgame/"
-pre = "heart"
+params = { icon = "heart" }
 weight = 4
 
 [[main]]
 identifier = "thoughts"
 name = "随想"
 url = "/thoughts/"
-pre = "thoughts"
+params = { icon = "brain_icon" }
 weight = 5
 
 [[main]]
 identifier = "about"
 name = "关于"
 url = "/about/"
-pre = "about"
+params = { icon = "user" }
 weight = 6
