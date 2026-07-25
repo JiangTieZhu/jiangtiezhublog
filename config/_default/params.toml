@@ -47,3 +47,17 @@ fullWidth = true
 page = [
     { type = "toc" }
 ]
+homepage = [
+
+    { type = "search" },
+
+    { type = "archives" },
+
+    { type = "categories" },
+
+    { type = "tag-cloud" },
+
+]
+
+[search]
+enabled = true
