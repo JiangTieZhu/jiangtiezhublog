@@ -1,5 +1,5 @@
 baseURL = "https://cyberbackgarden.top/"
-languageCode = "zh-cn"
+locale = "zh-cn"
 title = "赛博后花园"
 theme = "stack"
 hasCJKLanguage = true

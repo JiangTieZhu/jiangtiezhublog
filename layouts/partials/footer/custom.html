@@ -1,0 +1,60 @@
+<script>
+const startTime = new Date("2026-07-26 00:00:00".replace(/-/g, "/"));
+
+function updateRunningTime() {
+    const now = new Date();
+
+    let years = now.getFullYear() - startTime.getFullYear();
+    let months = now.getMonth() - startTime.getMonth();
+    let days = now.getDate() - startTime.getDate();
+    let hours = now.getHours() - startTime.getHours();
+    let minutes = now.getMinutes() - startTime.getMinutes();
+    let seconds = now.getSeconds() - startTime.getSeconds();
+
+    // 秒借位
+    if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+    }
+
+    // 分钟借位
+    if (minutes < 0) {
+        minutes += 60;
+        hours--;
+    }
+
+    // 小时借位
+    if (hours < 0) {
+        hours += 24;
+        days--;
+    }
+
+    // 天借位
+    if (days < 0) {
+        months--;
+
+        let lastMonth = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            0
+        );
+
+        days += lastMonth.getDate();
+    }
+
+    // 月借位
+    if (months < 0) {
+        months += 12;
+        years--;
+    }
+
+    let result =
+        `${years}年${months}个月${days}天` +
+        `${hours}小时${minutes}分钟${seconds}秒`;
+
+    document.getElementById("runningdays").innerHTML = result;
+}
+
+updateRunningTime();
+setInterval(updateRunningTime, 1000);
+</script>
