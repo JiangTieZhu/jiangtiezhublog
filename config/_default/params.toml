@@ -61,3 +61,10 @@ homepage = [
 
 [search]
 enabled = true
+
+[comments]
+enabled  = true
+provider = "twikoo"
+
+[comments.twikoo]
+envId = "https://twikoo.cyberbackgarden.top/"
