@@ -1,0 +1,27 @@
+.widget-archive {
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.archive-item {
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.archive-item a {
+
+    color: var(--body-text-color);
+    text-decoration: none;
+
+}
+
+.archive-item a:hover {
+
+    color: var(--accent-color);
+
+}
