@@ -1,20 +1,39 @@
-<section class="widget archives">
-    <h2 class="widget-title">
-        归档
-    </h2>
+{{ define "main" }}
 
-    <div class="widget-content">
-        {{ range (.Context.Site.RegularPages.GroupByDate "2006") }}
-        <div class="archive-item">
+<header class="section-title">
+    <h1>{{ .Title }}</h1>
+</header>
 
-            <a href="/archives/#{{ .Key }}">
-                {{ .Key }}
-                <span>
-                    ({{ len .Pages }})
-                </span>
-            </a>
 
-        </div>
-        {{ end }}
-    </div>
-</section>
+{{ range (.Site.RegularPages.GroupByDate "2006") }}
+
+<h2 id="{{ .Key }}">
+    {{ .Key }}
+</h2>
+
+
+<ul>
+
+{{ range .Pages }}
+
+<li>
+
+<time>
+{{ .Date.Format "2006-01-02" }}
+</time>
+
+<a href="{{ .RelPermalink }}">
+    {{ .Title }}
+</a>
+
+</li>
+
+{{ end }}
+
+</ul>
+
+
+{{ end }}
+
+
+{{ end }}
