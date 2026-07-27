@@ -83,10 +83,3 @@ name = "关于"
 url = "/about/"
 params = { icon = "user" }
 weight = 6
-
-[[main]]
-identifier = "search"
-name = "搜索"
-url = "/page/search"
-params = { icon = "search" }
-weight = 6
