@@ -30,4 +30,5 @@ filename = "sitemap.xml"
   startLevel = 2    # 目录收集的最小标题级别（从 h2 开始）
 
 [outputs]
-home = ["HTML", "RSS", "JSON"]
+    home = ["HTML", "RSS", "JSON"]
+    page = ["HTML"]
