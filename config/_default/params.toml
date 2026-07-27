@@ -61,6 +61,7 @@ homepage = [
 
 [search]
 enabled = true
+type = "fuse"
 
 [comments]
 enabled  = true
