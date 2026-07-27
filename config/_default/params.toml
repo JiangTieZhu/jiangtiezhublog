@@ -59,6 +59,9 @@ homepage = [
 
 ]
 
+[search]
+enabled = true
+
 [comments]
 enabled  = true
 provider = "twikoo"
