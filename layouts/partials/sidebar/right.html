@@ -1,12 +1,14 @@
-{{ partial "widget/search" (dict "Context" $context) }}
-
-{{ partial "widget/archive" (dict "Context" $context) }}
-
 {{ $context := .Context }}
+
+{{ partial "widget/search" (dict "Context" $context) }}
 
 {{ partial "widget/categories" (dict 
     "Context" $context
     "Params" (dict)
+) }}
+
+{{ partial "widget/archive" (dict 
+    "Context" $context
 ) }}
 
 {{ partial "widget/tag-cloud" (dict 
