@@ -87,6 +87,6 @@ weight = 6
 [[main]]
 identifier = "search"
 name = "搜索"
-url = "/search/"
+url = "/page/search"
 params = { icon = "search" }
 weight = 6
