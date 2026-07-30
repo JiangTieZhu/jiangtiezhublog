@@ -3,7 +3,7 @@ title: "开启高等数学自学之路"
 date: 2026-07-30
 image: cover.jpg
 draft: false
-categorie: "数学学习"
+categories: "数学学习"
 ---
 
 打开高等数学书，放眼望去既熟悉又陌生。
