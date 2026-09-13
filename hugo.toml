@@ -30,7 +30,7 @@ filename = "sitemap.xml"
 
 [services]
   [services.googleAnalytics]
-    id = 'G-HN5Y6CZ203'
+    id = "G-HN5Y6CZ203"
 
 [cookies]
     enabled = false
