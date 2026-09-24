@@ -1,36 +1,48 @@
 baseURL = "https://cyberbackgarden.top/"
 locale = "zh-cn"
 title = "赛博后花园"
-theme = "stack"
+theme = "cybergarden"
 hasCJKLanguage = true
 pluralizeListTitles = false
 capitalizeListTitles = true
 
-enableRobotsTXT = true
-relativeURLs = false
-canonifyURLs = true
+# 首页额外输出 searchindex.json，供前端搜索使用
+[outputs]
+  home = ["HTML", "RSS", "SearchIndex"]
 
-
-[pagination]
-pagerSize = 5
-
-[sitemap]
-changefreq = "weekly"
-priority = 0.8
-filename = "sitemap.xml"
+[outputFormats]
+  [outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "searchindex"
+    isPlainText = true
+    notAlternative = true
 
 [params]
-    favicon = "/favicon.ico"
-    favicon32x32 = "/favicon-32x32.png"
+  description = "时刻保持空杯心态。"
+  mainSections = ["post"]
 
-[markup.goldmark.tableOfContents]
-  endLevel = 4      # 目录收集的最大标题级别（如 h4）
-  ordered = false   # 是否使用有序列表
-  startLevel = 2    # 目录收集的最小标题级别（从 h2 开始）
-
-[services]
-  [services.googleAnalytics]
-    id = "G-HN5Y6CZ203"
-
-[cookies]
-    enabled = false
+[menu]
+  [[menu.main]]
+    name = "分类"
+    url = "/categories/"
+    weight = 1
+  [[menu.main]]
+    name = "归档"
+    url = "/archives/"
+    weight = 2
+  [[menu.main]]
+    name = "标签"
+    url = "/tags/"
+    weight = 3
+  [[menu.main]]
+    name = "关于"
+    url = "/about/"
+    weight = 4
+  [[menu.main]]
+    name = "搜索"
+    url = "/search/"
+    weight = 5
+  [[menu.main]]
+    name = "RSS"
+    url = "/index.xml"
+    weight = 6

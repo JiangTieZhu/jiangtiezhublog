@@ -1,0 +1,8 @@
+name = "Cybergarden"
+license = "GPL-3.0-only"
+description = "一个不合时宜的新粗野主义风格 Hugo 主题"
+author = "JiangTieZhu"
+#homepage = "https://github.com/yourusername/he-bu-shi-yi"
+tags = ["blog", "brutalism", "minimal", "chinese"]
+features = ["blog", "responsive", "dark-mode"]
+min_version = "0.100.0"

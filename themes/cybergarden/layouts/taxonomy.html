@@ -1,0 +1,22 @@
+{{ define "main" }}
+<h1 class="article-title" style="margin-top:60px;">{{ .Title }}</h1>
+
+{{ if eq .Data.Singular "category" }}
+{{/* 分类页：大卡片，左侧深绿竖线 */}}
+<div class="taxonomy-cards">
+  {{ range .Data.Terms.ByCount }}
+  <a class="taxonomy-card" href="{{ .Page.RelPermalink }}">
+    <span class="taxonomy-name">{{ .Page.Title }}</span>
+    <span class="taxonomy-count">{{ .Count }} 篇</span>
+  </a>
+  {{ end }}
+</div>
+{{ else }}
+{{/* 标签页：小按钮云 */}}
+<div class="tag-cloud">
+  {{ range .Data.Terms.ByCount }}
+  <a class="tag-btn" href="{{ .Page.RelPermalink }}"># {{ .Page.Title }} <span class="tag-count">{{ .Count }}</span></a>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}

@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{ $author := .Site.Params.author | default .Site.Title }}
+{{ $sectionTitle := "" }}
+{{ $sectionURL := "" }}
+{{ with .CurrentSection }}
+  {{ $sectionTitle = .Title }}
+  {{ $sectionURL = .RelPermalink }}
+{{ end }}
+
+<!-- 文章 meta 行：日期 · 阅读时长 · 板块 · BY 作者 -->
+<div class="article-meta-top">
+  <span>{{ .Date.Format "2006.01.02" }}</span>
+  <span>{{ .ReadingTime }} MIN READ</span>
+  {{ with $sectionTitle }}<span>{{ . }}</span>{{ end }}
+  <span>BY {{ $author }}</span>
+</div>
+
+<!-- 大标题 -->
+<h1 class="article-title">{{ .Title }}</h1>
+
+<!-- 正文卡片 -->
+<article class="article-card">
+  <div class="article-content">
+    {{ .Content }}
+  </div>
+</article>
+
+<!-- 文末按钮组 -->
+<nav class="post-nav-buttons">
+  <a class="nav-btn" href="{{ "/" | relURL }}">← 首页</a>
+  {{ with $sectionURL }}<a class="nav-btn" href="{{ . }}">☰ {{ $sectionTitle }}</a>{{ end }}
+  <a class="nav-btn" href="{{ "/archives/" | relURL }}">▦ 归档</a>
+  <a class="nav-btn" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ 顶部</a>
+</nav>
+
+{{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+{{ end }}

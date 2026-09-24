@@ -1,0 +1,79 @@
+{{ define "main" }}
+<h1 class="page-title">搜索</h1>
+
+<div class="search-box">
+  <input
+    id="search-input"
+    type="search"
+    placeholder="输入关键词，标题 / 正文 / 标签…"
+    autocomplete="off"
+    autofocus
+  />
+  <div class="search-meta" id="search-meta"></div>
+</div>
+
+<div id="search-results" class="search-results"></div>
+
+{{/* Fuse.js 从 CDN 加载 */}}
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script>
+(function () {
+  const input    = document.getElementById('search-input');
+  const results  = document.getElementById('search-results');
+  const meta     = document.getElementById('search-meta');
+  let fuse = null;
+
+  // 拉取全站索引
+  fetch('{{ "searchindex.json" | relURL }}')
+    .then(r => r.json())
+    .then(data => {
+      fuse = new Fuse(data, {
+        keys: [
+          { name: 'title',   weight: 0.5 },
+          { name: 'tags',    weight: 0.3 },
+          { name: 'content', weight: 0.2 }
+        ],
+        includeMatches: true,
+        threshold: 0.3,
+        location: 0,
+        distance: 100,
+        minMatchCharLength: 1,
+        ignoreLocation: true
+      });
+      if (input.value.trim()) render(input.value.trim());
+    });
+
+  function render(q) {
+    if (!fuse) return;
+    const hits = fuse.search(q);
+    meta.textContent = hits.length ? `找到 ${hits.length} 条结果` : '';
+    results.innerHTML = hits.map(h => {
+      const it = h.item;
+      const snippet = makeSnippet(it.content, q);
+      return `
+        <div class="search-item">
+          <a class="post-title" href="${it.url}">${it.title}</a>
+          <div class="post-meta">${it.date} · ${it.section || ''}</div>
+          <p class="search-snippet">${snippet}</p>
+        </div>`;
+    }).join('');
+  }
+
+  // 从正文里截一段包含关键词的上下文
+  function makeSnippet(content, q) {
+    if (!content) return '';
+    const idx = content.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return content.slice(0, 80) + '…';
+    const start = Math.max(0, idx - 30);
+    const end = Math.min(content.length, idx + q.length + 60);
+    return (start > 0 ? '…' : '') + content.slice(start, end) + (end < content.length ? '…' : '');
+  }
+
+  let timer;
+  input.addEventListener('input', e => {
+    clearTimeout(timer);
+    timer = setTimeout(() => render(e.target.value.trim()), 120);
+  });
+})();
+</script>
+{{ end }}

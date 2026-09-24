@@ -1,0 +1,16 @@
+{{/* 全站搜索索引：导出文章标题、链接、日期、正文纯文本 */}}
+{{ $pages := where site.RegularPages "Section" "post" }}
+{{ $pages := where $pages "Params.draft" "!=" true }}
+[
+{{ range $i, $p := $pages }}
+  {{ if $i }},{{ end }}
+  {
+    "title":   {{ $p.Title | jsonify }},
+    "url":     {{ $p.RelPermalink | jsonify }},
+    "date":    {{ $p.Date.Format "2006.01.02" | jsonify }},
+    "section": {{ $p.Section | jsonify }},
+    "tags":    {{ $p.Params.tags | default slice | jsonify }},
+    "content": {{ $p.Plain | jsonify }}
+  }
+{{ end }}
+]

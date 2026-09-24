@@ -1,0 +1,21 @@
+{{ define "main" }}
+<h1 class="article-title" style="margin-top:60px;">{{ .Title }}</h1>
+<div class="section-count">{{ len .Pages }} 篇</div>
+
+<div class="section-posts">
+  {{ range $i, $p := .Pages.ByDate.Reverse }}
+  <a class="section-post-card" href="{{ $p.RelPermalink }}">
+    <div class="spc-top">
+      <span class="spc-index">{{ printf "%02d" (add $i 1) }}</span>
+      <span class="spc-date">{{ $p.Date.Format "2006.01.02" }}</span>
+    </div>
+    <h2 class="spc-title">{{ $p.Title }}</h2>
+    <p class="spc-summary">{{ $p.Summary | plainify | truncate 60 }}</p>
+    <div class="spc-bottom">
+      <span class="spc-cat">{{ with $p.Params.categories }}{{ index . 0 }}{{ else }}{{ $p.Section }}{{ end }}</span>
+      <span class="spc-time">{{ $p.ReadingTime }} MIN</span>
+    </div>
+  </a>
+  {{ end }}
+</div>
+{{ end }}

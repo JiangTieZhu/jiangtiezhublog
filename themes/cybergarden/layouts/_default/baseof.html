@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default "zh-CN" }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+    
+    <!-- 直接读取 assets 里的 CSS，如果这段报错，说明你放错文件夹了 -->
+    {{ $style := resources.Get "css/style.css" }}
+    {{ if $style }}
+        {{ $style = $style | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+    {{ else }}
+        <!-- 如果你把 css 放在了 static/css/style.css，就用下面这行 -->
+        <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    {{ end }}
+</head>
+<body>
+    <div class="container">
+        {{ partial "header.html" . }}
+        <main>
+            {{ block "main" . }}{{ end }}
+        </main>
+    </div>
+    {{ partial "marquee.html" . }}
+    <div class="container">
+        {{ partial "footer.html" . }}
+    </div>
+</body>
+</html>

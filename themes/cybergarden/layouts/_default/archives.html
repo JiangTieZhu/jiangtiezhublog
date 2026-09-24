@@ -1,0 +1,19 @@
+{{ define "main" }}
+<h1 class="article-title" style="margin-top:60px;">归档</h1>
+
+{{ $posts := where .Site.RegularPages "Section" "post" }}
+{{ range $posts.GroupByDate "2006" }}
+<div class="archive-year">
+  <h2 class="archive-year-title">{{ .Key }}</h2>
+  <div class="archive-list">
+    {{ range .Pages.ByDate.Reverse }}
+    <div class="archive-row">
+      <span class="archive-date">{{ .Date.Format "01.02" }}</span>
+      <a class="archive-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <span class="archive-cat">{{ with .Params.categories }}{{ index . 0 }}{{ end }}</span>
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+{{ end }}

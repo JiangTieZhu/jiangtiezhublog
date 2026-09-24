@@ -1,0 +1,95 @@
+{{ define "main" }}
+<!--
+  ============================================================
+  首页模板（home.html）
+  注意：Hugo v0.146.0 起，首页模板必须叫 home.html，
+  旧的 index.html 不再被识别为首页。
+  ============================================================
+-->
+
+<!-- Hero 区 -->
+<section class="hero-section">
+    <div class="hero-red-box">
+        <h1>{{ .Site.Title }}</h1>
+        <p>{{ .Site.Params.description }}</p>
+    </div>
+
+    <!-- 最新文章卡片 -->
+    <div class="brutal-card latest-card">
+        <span class="badge-new">最新</span>
+        {{ $latest := first 1 (where site.RegularPages "Section" "post") }}
+        {{ if $latest }}
+          {{ range $latest }}
+            <h3 style="margin-top: 15px;"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <div class="meta" style="margin-top: 20px;">{{ .Date.Format "2006.01.02" }} · {{ .ReadingTime }} min</div>
+          {{ end }}
+        {{ else }}
+            <h3 style="margin-top: 15px;">暂无文章</h3>
+            <div class="meta" style="margin-top: 20px;">快去写一篇吧</div>
+        {{ end }}
+    </div>
+</section>
+
+<!-- 统计条（四个数字均可点击） -->
+{{ $latest := first 1 (where site.RegularPages "Section" "post") }}
+<section class="stats-bar">
+    <a class="stats-item stats-link" href="{{ "/archives/" | relURL }}">
+        <div class="num">{{ len (where site.RegularPages "Section" "post") }}</div>
+        <div class="label">篇文章</div>
+    </a>
+    <a class="stats-item stats-link" href="{{ "/categories/" | relURL }}">
+        <div class="num">{{ len site.Taxonomies.categories }}</div>
+        <div class="label">个分类</div>
+    </a>
+    <a class="stats-item stats-link" href="{{ "/tags/" | relURL }}">
+        <div class="num">{{ len site.Taxonomies.tags }}</div>
+        <div class="label">个标签</div>
+    </a>
+    {{ with $latest }}
+    {{ range . }}
+    <a class="stats-item stats-link" href="{{ .RelPermalink }}">
+        <div class="num">{{ .Date.Format "2006.01.02" }}</div>
+        <div class="label">最近更新</div>
+    </a>
+    {{ end }}
+    {{ end }}
+</section>
+
+<!-- 分类网格：学习 / 随想 / 观影与阅读 / 游戏 -->
+<section class="category-grid">
+
+    {{ $boards := slice
+        (dict "title" "学习"       "path" "post/study"    "url" "/post/study/")
+        (dict "title" "随想"       "path" "post/thoughts"  "url" "/post/thoughts/")
+        (dict "title" "观影与阅读" "path" "post/reading"  "url" "/post/reading/")
+        (dict "title" "游戏"       "path" "post/gaming"   "url" "/post/gaming/")
+    }}
+
+    {{ range $board := $boards }}
+    {{ $sec := site.GetPage $board.path }}
+    {{ $pages := $sec.RegularPages | default slice }}
+    <div class="brutal-card category-card">
+        <div class="category-header">
+            <h2>{{ $board.title }} <span>{{ len $pages }} 篇</span></h2>
+            <a href="{{ $board.url }}" class="view-all">全部 →</a>
+        </div>
+        <div class="post-list">
+            {{ if $pages }}
+                {{ range first 4 $pages }}
+                <div class="post-item">
+                    <div class="post-meta">{{ .Date.Format "2006.01.02" }} · {{ .ReadingTime }} min</div>
+                    <a href="{{ .RelPermalink }}" class="post-title">{{ .Title }}</a>
+                </div>
+                {{ end }}
+            {{ else }}
+                <div class="post-item">
+                    <span class="post-meta">—</span>
+                    <span class="post-title">还没有内容</span>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+</section>
+{{ end }}
