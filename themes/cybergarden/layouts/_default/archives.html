@@ -10,7 +10,7 @@
     <div class="archive-row">
       <span class="archive-date">{{ .Date.Format "01.02" }}</span>
       <a class="archive-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-      <span class="archive-cat">{{ with .Params.categories }}{{ index . 0 }}{{ end }}</span>
+      <span class="archive-cat">{{ with .Params.categories }}{{ if reflect.IsSlice . }}{{ index . 0 }}{{ else }}{{ . }}{{ end }}{{ end }}</span>
     </div>
     {{ end }}
   </div>

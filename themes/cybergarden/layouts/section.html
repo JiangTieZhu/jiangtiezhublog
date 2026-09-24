@@ -12,7 +12,7 @@
     <h2 class="spc-title">{{ $p.Title }}</h2>
     <p class="spc-summary">{{ $p.Summary | plainify | truncate 60 }}</p>
     <div class="spc-bottom">
-      <span class="spc-cat">{{ with $p.Params.categories }}{{ index . 0 }}{{ else }}{{ $p.Section }}{{ end }}</span>
+      <span class="spc-cat">{{ with $p.Params.categories }}{{ if reflect.IsSlice . }}{{ index . 0 }}{{ else }}{{ . }}{{ end }}{{ else }}{{ $p.Section }}{{ end }}</span>
       <span class="spc-time">{{ $p.ReadingTime }} MIN</span>
     </div>
   </a>
