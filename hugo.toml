@@ -18,8 +18,9 @@ capitalizeListTitles = true
     notAlternative = true
 
 [params]
-  description = "这是一个人的博客，写一些不合时宜的想法。"
+  description = "保持空杯心态。"
   mainSections = ["post"]
+  author = "姜铁柱"  
 
 [menu]
   [[menu.main]]
