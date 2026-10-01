@@ -3,16 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
-    
-    <!-- 直接读取 assets 里的 CSS，如果这段报错，说明你放错文件夹了 -->
+
+    {{- $title := .Site.Title -}}
+    {{- if not .IsHome -}}
+      {{- with .Title }}{{ $title = printf "%s · %s" . $.Site.Title }}{{ end -}}
+    {{- end -}}
+    <title>{{ $title }}</title>
+
+    {{- $description := .Description | default .Site.Params.description | default .Site.Title -}}
+    <meta name="description" content="{{ $description | plainify | htmlEscape }}">
+    <meta name="author" content="{{ .Site.Params.author | default .Site.Title | htmlEscape }}">
+    <meta name="generator" content="Hugo {{ hugo.Version }}">
+    <meta name="theme-color" content="#F6F4F0" id="theme-color-meta">
+
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
+
+    {{ if eq .Kind "404" }}
+      <meta name="robots" content="noindex, follow">
+    {{ else }}
+      <meta name="robots" content="index, follow">
+    {{ end }}
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:title" content="{{ $title | htmlEscape }}">
+    <meta property="og:description" content="{{ $description | plainify | htmlEscape }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Title | htmlEscape }}">
+    <meta property="og:locale" content="zh_CN">
+    {{ with .Params.image }}
+      {{ with $.Resources.GetMatch . }}<meta property="og:image" content="{{ .Permalink }}">{{ end }}
+    {{ end }}
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $title | htmlEscape }}">
+    <meta name="twitter:description" content="{{ $description | plainify | htmlEscape }}">
+    {{ with .Params.image }}
+      {{ with $.Resources.GetMatch . }}<meta name="twitter:image" content="{{ .Permalink }}">{{ end }}
+    {{ end }}
+
+    <!-- 结构化数据 -->
+    {{ if .IsPage }}
+    <script type="application/ld+json">
+    {{ dict
+      "@context" "https://schema.org"
+      "@type" "BlogPosting"
+      "headline" .Title
+      "description" $description
+      "datePublished" .Date
+      "dateModified" .Lastmod
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+      "author" (dict "@type" "Person" "name" (.Site.Params.author | default .Site.Title))
+      "publisher" (dict "@type" "Person" "name" (.Site.Params.author | default .Site.Title))
+    | jsonify | safeJS }}
+    </script>
+    {{ else if .IsHome }}
+    <script type="application/ld+json">
+    {{ dict
+      "@context" "https://schema.org"
+      "@type" "WebSite"
+      "name" .Site.Title
+      "url" .Site.Home.Permalink
+      "description" $description
+    | jsonify | safeJS }}
+    </script>
+    {{ end }}
+
+    <!-- 在首屏绘制前恢复用户主题选择，避免 Dark Mode 闪白 -->
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('cybergarden-theme');
+          if (saved === 'dark' || saved === 'light') {
+            document.documentElement.dataset.theme = saved;
+          }
+        } catch (_) {}
+      })();
+    </script>
+
     {{ $style := resources.Get "css/style.css" }}
     {{ if $style }}
         {{ $style = $style | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+        <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
     {{ else }}
-        <!-- 如果你把 css 放在了 static/css/style.css，就用下面这行 -->
         <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    {{ end }}
+
+    {{ $script := resources.Get "js/main.js" }}
+    {{ if $script }}
+        {{ $script = $script | minify | fingerprint }}
+        <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>
     {{ end }}
 </head>
 <body>

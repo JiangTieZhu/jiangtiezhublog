@@ -1,8 +1,26 @@
 <header class="site-header">
-    <a href="{{ .Site.BaseURL }}" class="logo">{{ .Site.Title }}</a>
-    <nav class="nav-menu">
-        {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}">{{ .Name }}</a>
-        {{ end }}
-    </nav>
+    <a href="{{ "/" | relURL }}" class="logo">{{ .Site.Title }}</a>
+    <div class="header-actions">
+        <nav class="nav-menu" aria-label="主导航">
+            {{ range .Site.Menus.main }}
+            <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+            {{ end }}
+        </nav>
+        <button
+            class="theme-toggle"
+            type="button"
+            aria-label="切换深色模式"
+            aria-pressed="false"
+            title="切换深色模式"
+        >
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.7 6.7 0 0 0 21 12.8Z"></path>
+            </svg>
+            <span class="theme-toggle-text">主题</span>
+        </button>
+    </div>
 </header>

@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="error-page" aria-labelledby="error-title">
+  <div class="error-card">
+    <div class="error-code" aria-hidden="true">404</div>
+    <div class="error-label">PAGE NOT FOUND</div>
+    <h1 id="error-title">你走丢了。</h1>
+    <p class="error-description">
+      这条路似乎通往花园之外。<br>
+      你访问的页面可能已经搬家、删除，或者网址写错了。
+    </p>
+    <div class="error-actions">
+      <a class="error-btn error-btn-primary" href="{{ "/" | relURL }}">← 回到后花园</a>
+      <a class="error-btn" href="{{ "/archives/" | relURL }}">浏览归档</a>
+      <a class="error-btn" href="{{ "/search/" | relURL }}">搜索文章</a>
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,6 +1,6 @@
-{{/* 全站搜索索引：导出文章标题、链接、日期、正文纯文本 */}}
+{{/* 全站搜索索引：标题、链接、日期、板块、标签、摘要和正文纯文本 */}}
 {{ $pages := where site.RegularPages "Section" "post" }}
-{{ $pages := where $pages "Params.draft" "!=" true }}
+{{ $pages = where $pages "Params.draft" "!=" true }}
 [
 {{ range $i, $p := $pages }}
   {{ if $i }},{{ end }}
@@ -10,6 +10,7 @@
     "date":    {{ $p.Date.Format "2006.01.02" | jsonify }},
     "section": {{ $p.Section | jsonify }},
     "tags":    {{ $p.Params.tags | default slice | jsonify }},
+    "summary": {{ $p.Summary | plainify | jsonify }},
     "content": {{ $p.Plain | jsonify }}
   }
 {{ end }}

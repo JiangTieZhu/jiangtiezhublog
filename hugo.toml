@@ -3,6 +3,7 @@ locale = "zh-cn"
 title = "赛博后花园"
 theme = "cybergarden"
 hasCJKLanguage = true
+enableRobotsTXT = true
 pluralizeListTitles = false
 capitalizeListTitles = true
 
